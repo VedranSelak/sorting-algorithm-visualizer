@@ -2,6 +2,8 @@ import { createGlobalStyle } from "styled-components";
 import ArvoWoff from "./fonts/Arvo.woff";
 import ArvoWoff2 from "./fonts/Arvo.woff";
 
+export const primaryColor = "#40375C";
+
 export const GlobalStyle = createGlobalStyle`
 @font-face {
       font-family: 'Arvo';
