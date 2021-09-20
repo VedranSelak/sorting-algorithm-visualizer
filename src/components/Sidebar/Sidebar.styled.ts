@@ -17,26 +17,5 @@ export const SidebarWrapper = styled.div`
 export const SidebarTitle = styled.h3`
   font-size: 20px;
   color: white;
-`;
-
-export const InputArraySize = styled.input`
-  width: 80%;
-  background: transparent;
-  text-align: center;
-  color: white;
-  outline: none;
-  border: 2px solid white;
-  border-radius: 2px;
-  margin-top: 20px;
   margin-bottom: 20px;
-
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 `;
