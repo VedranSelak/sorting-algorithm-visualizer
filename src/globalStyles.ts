@@ -4,6 +4,7 @@ import ArvoWoff2 from "./fonts/Arvo.woff";
 
 export const primaryColor = "#31004a";
 export const secondaryPurple = "#33007b";
+export const lightPurple = "#ab00ff";
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {
