@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCurrentArraySize,
+  setArraySize,
+} from "../../store/sorting.slice";
 import {
   TopbarContainer,
   RangeInput,
@@ -6,7 +10,8 @@ import {
   RangeTooltip,
 } from "./Topbar.styled";
 const Topbar = () => {
-  const [rangeValue, setRangeValue] = useState(200);
+  const rangeValue = useSelector(selectCurrentArraySize);
+  const dispatch = useDispatch();
   return (
     <TopbarContainer>
       <TopbarLeft>
@@ -18,7 +23,9 @@ const Topbar = () => {
           value={rangeValue}
           min={2}
           max={500}
-          onChange={(e) => setRangeValue(parseInt(e.target.value))}
+          onChange={(e) =>
+            dispatch(setArraySize({ arraySize: parseInt(e.target.value) }))
+          }
         />
       </TopbarLeft>
     </TopbarContainer>
