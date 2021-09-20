@@ -8,9 +8,9 @@ const Sidebar = () => {
   return (
     <SidebarWrapper>
       <SidebarTitle>sort.</SidebarTitle>
-      <SidebarItem icon={<GiBubbles />} />
-      <SidebarItem icon={<SiFastly />} />
-      <SidebarItem icon={<CgMergeVertical />} />
+      <SidebarItem title="Bubble Sort" icon={<GiBubbles />} />
+      <SidebarItem title="Quick Sort" icon={<SiFastly />} />
+      <SidebarItem title="Merge Sort" icon={<CgMergeVertical />} />
     </SidebarWrapper>
   );
 };

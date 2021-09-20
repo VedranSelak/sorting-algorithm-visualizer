@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { primaryColor } from "../../globalStyles";
+import { primaryColor, secondaryPurple } from "../../globalStyles";
 
 export const TopbarContainer = styled.div`
   display: flex;
@@ -16,6 +16,45 @@ export const TopbarLeft = styled.div`
   justify-content: center;
   margin-left: 32px;
   position: relative;
+`;
+
+export const TopbarRight = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 32px;
+`;
+
+export const SortButton = styled.button`
+  width: 60px;
+  height: 36px;
+  background-color: ${secondaryPurple};
+  color: white;
+  border-radius: 5px;
+  margin-left: 20px;
+  font-weight: 400;
+  font-size: 15px;
+  outline: none;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+`;
+
+export const Accent = styled.span`
+  color: ${secondaryPurple};
+  font-weight: 600;
+  font-size: 17px;
+`;
+
+export const AlgorithmName = styled.div`
+  color: grey;
+  font-weight: 500;
+  font-size: 15px;
 `;
 
 export const RangeInput = styled.input`
