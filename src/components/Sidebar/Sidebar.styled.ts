@@ -28,6 +28,7 @@ export const InputArraySize = styled.input`
   border: 2px solid white;
   border-radius: 2px;
   margin-top: 20px;
+  margin-bottom: 20px;
 
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
