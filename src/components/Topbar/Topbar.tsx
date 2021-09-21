@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentAlgorithm,
-  selectCurrentArray,
   selectCurrentArraySize,
   setArraySize,
-  swapElements,
 } from "../../store/sorting.slice";
+import { setIsButtonClicked } from "../../store/ui.slice";
 import {
   TopbarContainer,
   RangeInput,
@@ -23,20 +22,9 @@ const Topbar = () => {
   const selectedAlgorithm = useSelector(selectCurrentAlgorithm);
   const dispatch = useDispatch();
   const [tooltipShow, setTooltipShow] = useState(false);
-  const currentArray = useSelector(selectCurrentArray);
 
   const handleClick = () => {
-    const ourArray = [...currentArray];
-    for (let l = 0; l < ourArray.length - 1; l++) {
-      for (let k = 0; k < ourArray.length - l - 1; k++) {
-        if (ourArray[k] > ourArray[k + 1]) {
-          dispatch(swapElements({ i: k, j: k + 1 }));
-          let temp = ourArray[k];
-          ourArray[k] = ourArray[k + 1];
-          ourArray[k + 1] = temp;
-        }
-      }
-    }
+    dispatch(setIsButtonClicked({ isButtonClicked: true }));
   };
 
   return (
