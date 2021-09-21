@@ -26,7 +26,7 @@ const Topbar = () => {
     <TopbarContainer>
       <TopbarLeft>
         {tooltipShow && (
-          <RangeTooltip style={{ left: `${((rangeValue - 2) / 498) * 100}%` }}>
+          <RangeTooltip style={{ left: `${((rangeValue - 2) / 423) * 100}%` }}>
             {rangeValue}
           </RangeTooltip>
         )}
@@ -36,7 +36,7 @@ const Topbar = () => {
           type="range"
           value={rangeValue}
           min={2}
-          max={500}
+          max={425}
           onChange={(e) =>
             dispatch(setArraySize({ arraySize: parseInt(e.target.value) }))
           }
