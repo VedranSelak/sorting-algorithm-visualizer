@@ -9,13 +9,8 @@ export const SortingDisplayWrapper = styled.div`
   justify-content: space-around;
 `;
 
-interface SortingItemProps {
-  value: number;
-}
-
-export const SortingItem = styled.div<SortingItemProps>`
+export const SortingItem = styled.div`
   background-color: ${primaryColor};
-  height: ${(props) => `${props.value}%`};
   width: 100%;
   margin-right: 3px;
 `;
