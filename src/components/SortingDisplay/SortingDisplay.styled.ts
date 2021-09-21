@@ -6,11 +6,11 @@ export const SortingDisplayWrapper = styled.div`
   height: 90%;
   display: flex;
   align-items: flex-end;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const SortingItem = styled.div`
   background-color: ${primaryColor};
-  width: 100%;
   margin-right: 3px;
+  width: 100%;
 `;

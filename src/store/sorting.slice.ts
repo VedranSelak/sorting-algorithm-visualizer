@@ -36,7 +36,7 @@ export const sortingSlice = createSlice({
       const temp = state.currentArray[action.payload.i];
       state.currentArray[action.payload.i] =
         state.currentArray[action.payload.j];
-      state.currentArray[action.payload.j] = state.currentArray[temp];
+      state.currentArray[action.payload.j] = temp;
     },
   },
 });
