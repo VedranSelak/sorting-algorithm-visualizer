@@ -29,7 +29,17 @@ const SortingDisplay = () => {
   useEffect(() => {
     if (isButtonClicked) {
       const animations = bubbleSort([...currentArray]);
-      console.log(animations);
+      const elements = document.getElementsByClassName(
+        "array-item"
+      ) as HTMLCollectionOf<HTMLElement>;
+      animations.forEach((animation, index) => {
+        setTimeout(() => {
+          const [i, j] = animation;
+          const temp = elements[i].style.height;
+          elements[i].style.height = elements[j].style.height;
+          elements[j].style.height = temp;
+        }, index * 5);
+      });
     }
     dispatch(setIsButtonClicked({ isButtonClicked: false }));
   }, [isButtonClicked, currentArray, dispatch]);
@@ -42,7 +52,13 @@ const SortingDisplay = () => {
     <SortingDisplayWrapper>
       {currentArray.map((num, index) => {
         const height = (num / 1000) * 100;
-        return <SortingItem key={index} style={{ height: `${height}%` }} />;
+        return (
+          <SortingItem
+            className="array-item"
+            key={index}
+            style={{ height: `${height}%` }}
+          />
+        );
       })}
     </SortingDisplayWrapper>
   );
