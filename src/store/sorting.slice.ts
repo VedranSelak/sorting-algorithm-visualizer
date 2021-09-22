@@ -5,12 +5,14 @@ export interface SortingState {
   arraySize: number;
   selectedAlgorithm: string;
   currentArray: number[];
+  sortingSpeed: number;
 }
 
 const initialState: SortingState = {
   arraySize: 200,
   selectedAlgorithm: "",
   currentArray: [],
+  sortingSpeed: 5,
 };
 
 export const sortingSlice = createSlice({
@@ -38,11 +40,19 @@ export const sortingSlice = createSlice({
         state.currentArray[action.payload.j];
       state.currentArray[action.payload.j] = temp;
     },
+    setSortingSpeed: (state, action: { payload: { sortingSpeed: number } }) => {
+      state.sortingSpeed = action.payload.sortingSpeed;
+    },
   },
 });
 
-export const { setArraySize, selectAlgorithm, setCurrentArray, swapElements } =
-  sortingSlice.actions;
+export const {
+  setArraySize,
+  selectAlgorithm,
+  setCurrentArray,
+  swapElements,
+  setSortingSpeed,
+} = sortingSlice.actions;
 
 export const selectCurrentArraySize = (state: RootState) =>
   state.sorting.arraySize;
@@ -50,5 +60,7 @@ export const selectCurrentAlgorithm = (state: RootState) =>
   state.sorting.selectedAlgorithm;
 export const selectCurrentArray = (state: RootState) =>
   state.sorting.currentArray;
+export const selectSortingSpeed = (state: RootState) =>
+  state.sorting.sortingSpeed;
 
 export default sortingSlice.reducer;

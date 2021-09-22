@@ -18,12 +18,39 @@ export const TopbarLeft = styled.div`
   position: relative;
 `;
 
+export const TopbarMiddle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 export const TopbarRight = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 32px;
+`;
+
+export const RangeDescription = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+`;
+
+export const DescriptionItem = styled.div`
+  color: lightgrey;
+  font-size: 12px;
+
+  &:first-child {
+    margin-left: -15px;
+  }
+
+  &:last-child {
+    margin-right: -15px;
+  }
 `;
 
 export const SortButton = styled.button`

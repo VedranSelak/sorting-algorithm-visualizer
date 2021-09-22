@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentAlgorithm,
   selectCurrentArraySize,
+  selectSortingSpeed,
   setArraySize,
+  setSortingSpeed,
 } from "../../store/sorting.slice";
 import { setIsButtonClicked } from "../../store/ui.slice";
 import {
@@ -15,11 +17,15 @@ import {
   SortButton,
   AlgorithmName,
   Accent,
+  TopbarMiddle,
+  RangeDescription,
+  DescriptionItem,
 } from "./Topbar.styled";
 
 const Topbar = () => {
   const rangeValue = useSelector(selectCurrentArraySize);
   const selectedAlgorithm = useSelector(selectCurrentAlgorithm);
+  const sortingSpeed = useSelector(selectSortingSpeed);
   const dispatch = useDispatch();
   const [tooltipShow, setTooltipShow] = useState(false);
 
@@ -47,6 +53,22 @@ const Topbar = () => {
           }
         />
       </TopbarLeft>
+      <TopbarMiddle>
+        <RangeInput
+          type="range"
+          value={101 - sortingSpeed}
+          min={1}
+          max={100}
+          onChange={(e) => {
+            const speed = 101 - parseInt(e.target.value);
+            dispatch(setSortingSpeed({ sortingSpeed: speed }));
+          }}
+        />
+        <RangeDescription>
+          <DescriptionItem>Slow</DescriptionItem>
+          <DescriptionItem>Fast</DescriptionItem>
+        </RangeDescription>
+      </TopbarMiddle>
       <TopbarRight>
         <AlgorithmName>
           {selectedAlgorithm !== "" ? (

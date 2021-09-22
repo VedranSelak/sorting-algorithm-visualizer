@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentArray,
   selectCurrentArraySize,
+  selectSortingSpeed,
   setCurrentArray,
 } from "../../store/sorting.slice";
 import {
@@ -17,6 +18,7 @@ const SortingDisplay = () => {
   const dispatch = useDispatch();
   const currentArray = useSelector(selectCurrentArray);
   const isButtonClicked = useSelector(selectIsButtonClicked);
+  const sortingSpeed = useSelector(selectSortingSpeed);
 
   useEffect(() => {
     const array = [];
@@ -38,11 +40,11 @@ const SortingDisplay = () => {
           const temp = elements[i].style.height;
           elements[i].style.height = elements[j].style.height;
           elements[j].style.height = temp;
-        }, index * 5);
+        }, index * sortingSpeed);
       });
     }
     dispatch(setIsButtonClicked({ isButtonClicked: false }));
-  }, [isButtonClicked, currentArray, dispatch]);
+  }, [isButtonClicked, currentArray, dispatch, sortingSpeed]);
 
   const getRandomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
