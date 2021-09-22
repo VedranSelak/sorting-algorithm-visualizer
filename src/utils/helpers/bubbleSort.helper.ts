@@ -7,6 +7,7 @@ export const bubbleSort = (arrayToSort: number[]) => {
       if (arrayToSort[j] > arrayToSort[j + 1]) {
         swap(arrayToSort, j, j + 1);
         animations.push([j, j + 1]);
+        animations.push([j, j + 1]);
       }
     }
   }

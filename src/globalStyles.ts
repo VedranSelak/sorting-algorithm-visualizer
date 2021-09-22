@@ -3,8 +3,11 @@ import ArvoWoff from "./fonts/Arvo.woff";
 import ArvoWoff2 from "./fonts/Arvo.woff";
 
 export const primaryColor = "#31004a";
+export const primaryColorRgb = "rgb(49, 0, 74)";
 export const secondaryPurple = "#33007b";
 export const lightPurple = "#ab00ff";
+export const lightBlue = "#4287f5";
+export const accentGrey = "#95989e";
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {

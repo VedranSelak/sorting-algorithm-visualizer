@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { primaryColor, lightBlue } from "../../globalStyles";
 import {
   selectCurrentArray,
   selectCurrentArraySize,
@@ -34,13 +35,24 @@ const SortingDisplay = () => {
       const elements = document.getElementsByClassName(
         "array-item"
       ) as HTMLCollectionOf<HTMLElement>;
+      console.log(elements);
       animations.forEach((animation, index) => {
-        setTimeout(() => {
-          const [i, j] = animation;
-          const temp = elements[i].style.height;
-          elements[i].style.height = elements[j].style.height;
-          elements[j].style.height = temp;
-        }, index * sortingSpeed);
+        if (index % 2 === 0) {
+          setTimeout(() => {
+            const [i, j] = animation;
+            elements[i].style.backgroundColor = lightBlue;
+            elements[j].style.backgroundColor = lightBlue;
+            const temp = elements[i].style.height;
+            elements[i].style.height = elements[j].style.height;
+            elements[j].style.height = temp;
+          }, index * sortingSpeed);
+        } else {
+          setTimeout(() => {
+            const [i, j] = animation;
+            elements[i].style.backgroundColor = primaryColor;
+            elements[j].style.backgroundColor = primaryColor;
+          }, index * sortingSpeed);
+        }
       });
     }
     dispatch(setIsButtonClicked({ isButtonClicked: false }));

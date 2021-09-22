@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { primaryColor, secondaryPurple } from "../../globalStyles";
+import { primaryColor, secondaryPurple, accentGrey } from "../../globalStyles";
 
 export const TopbarContainer = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const RangeDescription = styled.div`
 `;
 
 export const DescriptionItem = styled.div`
-  color: lightgrey;
+  color: ${accentGrey};
   font-size: 12px;
 
   &:first-child {
