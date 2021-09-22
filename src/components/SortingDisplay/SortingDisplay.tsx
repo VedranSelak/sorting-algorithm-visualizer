@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { primaryColor, lightBlue } from "../../globalStyles";
 import {
+  selectCurrentAlgorithm,
   selectCurrentArray,
   selectCurrentArraySize,
   selectSortingSpeed,
@@ -13,6 +14,8 @@ import {
 } from "../../store/ui.slice";
 import { bubbleSort } from "../../utils/helpers/bubbleSort.helper";
 import { SortingDisplayWrapper, SortingItem } from "./SortingDisplay.styled";
+import { BUBBLE, MERGE } from "../../utils/constants/algorithmNames.constants";
+import { mergeSort } from "../../utils/helpers/mergeSort.helper";
 
 const SortingDisplay = () => {
   const arraySize = useSelector(selectCurrentArraySize);
@@ -20,6 +23,7 @@ const SortingDisplay = () => {
   const currentArray = useSelector(selectCurrentArray);
   const isButtonClicked = useSelector(selectIsButtonClicked);
   const sortingSpeed = useSelector(selectSortingSpeed);
+  const currentAlgorithm = useSelector(selectCurrentAlgorithm);
 
   useEffect(() => {
     const array = [];
@@ -29,34 +33,53 @@ const SortingDisplay = () => {
     dispatch(setCurrentArray({ currentArray: array }));
   }, [arraySize, dispatch]);
 
+  const executeBubbleSort = () => {
+    const animations = bubbleSort([...currentArray]);
+    const elements = document.getElementsByClassName(
+      "array-item"
+    ) as HTMLCollectionOf<HTMLElement>;
+    animations.forEach((animation, index) => {
+      if (index % 2 === 0) {
+        setTimeout(() => {
+          const [i, j] = animation;
+          elements[i].style.backgroundColor = lightBlue;
+          elements[j].style.backgroundColor = lightBlue;
+          const temp = elements[i].style.height;
+          elements[i].style.height = elements[j].style.height;
+          elements[j].style.height = temp;
+        }, index * sortingSpeed);
+      } else {
+        setTimeout(() => {
+          const [i, j] = animation;
+          elements[i].style.backgroundColor = primaryColor;
+          elements[j].style.backgroundColor = primaryColor;
+        }, index * sortingSpeed);
+      }
+    });
+  };
+
+  const executeMergeSort = () => {
+    const arrayToSort = [...currentArray];
+    mergeSort(arrayToSort);
+    console.log(arrayToSort);
+  };
+
   useEffect(() => {
     if (isButtonClicked) {
-      const animations = bubbleSort([...currentArray]);
-      const elements = document.getElementsByClassName(
-        "array-item"
-      ) as HTMLCollectionOf<HTMLElement>;
-      console.log(elements);
-      animations.forEach((animation, index) => {
-        if (index % 2 === 0) {
-          setTimeout(() => {
-            const [i, j] = animation;
-            elements[i].style.backgroundColor = lightBlue;
-            elements[j].style.backgroundColor = lightBlue;
-            const temp = elements[i].style.height;
-            elements[i].style.height = elements[j].style.height;
-            elements[j].style.height = temp;
-          }, index * sortingSpeed);
-        } else {
-          setTimeout(() => {
-            const [i, j] = animation;
-            elements[i].style.backgroundColor = primaryColor;
-            elements[j].style.backgroundColor = primaryColor;
-          }, index * sortingSpeed);
-        }
-      });
+      switch (currentAlgorithm) {
+        case BUBBLE:
+          executeBubbleSort();
+          break;
+        case MERGE:
+          executeMergeSort();
+          break;
+        default:
+          console.log("please select an algorithm");
+          break;
+      }
     }
     dispatch(setIsButtonClicked({ isButtonClicked: false }));
-  }, [isButtonClicked, currentArray, dispatch, sortingSpeed]);
+  }, [isButtonClicked, dispatch]);
 
   const getRandomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
