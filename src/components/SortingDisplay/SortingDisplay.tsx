@@ -33,6 +33,23 @@ const SortingDisplay = () => {
     dispatch(setCurrentArray({ currentArray: array }));
   }, [arraySize, dispatch]);
 
+  useEffect(() => {
+    if (isButtonClicked) {
+      switch (currentAlgorithm) {
+        case BUBBLE:
+          executeBubbleSort();
+          break;
+        case MERGE:
+          executeMergeSort();
+          break;
+        default:
+          console.log("please select an algorithm");
+          break;
+      }
+    }
+    dispatch(setIsButtonClicked({ isButtonClicked: false }));
+  }, [isButtonClicked, dispatch]);
+
   const executeBubbleSort = () => {
     const animations = bubbleSort([...currentArray]);
     const elements = document.getElementsByClassName(
@@ -59,27 +76,27 @@ const SortingDisplay = () => {
   };
 
   const executeMergeSort = () => {
-    const arrayToSort = [...currentArray];
-    mergeSort(arrayToSort);
-    console.log(arrayToSort);
-  };
-
-  useEffect(() => {
-    if (isButtonClicked) {
-      switch (currentAlgorithm) {
-        case BUBBLE:
-          executeBubbleSort();
-          break;
-        case MERGE:
-          executeMergeSort();
-          break;
-        default:
-          console.log("please select an algorithm");
-          break;
+    const animations = mergeSort([...currentArray]);
+    const elements = document.getElementsByClassName(
+      "array-item"
+    ) as HTMLCollectionOf<HTMLElement>;
+    animations.forEach((animation, index) => {
+      if (index % 2 === 0) {
+        setTimeout(() => {
+          const [i, j] = animation;
+          elements[i].style.backgroundColor = lightBlue;
+          elements[j].style.backgroundColor = lightBlue;
+        }, index * sortingSpeed);
+      } else {
+        setTimeout(() => {
+          const [i, value, j] = animation;
+          elements[i].style.height = `${(value / 1000) * 100}%`;
+          elements[i].style.backgroundColor = primaryColor;
+          elements[j].style.backgroundColor = primaryColor;
+        }, index * sortingSpeed);
       }
-    }
-    dispatch(setIsButtonClicked({ isButtonClicked: false }));
-  }, [isButtonClicked, dispatch]);
+    });
+  };
 
   const getRandomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
