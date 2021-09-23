@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { primaryColor, lightBlue } from "../../globalStyles";
+import { primaryColor, lightBlue, accentRed } from "../../globalStyles";
 import {
   selectCurrentAlgorithm,
   selectCurrentArray,
@@ -59,8 +59,8 @@ const SortingDisplay = () => {
       if (index % 2 === 0) {
         setTimeout(() => {
           const [i, j] = animation;
-          elements[i].style.backgroundColor = lightBlue;
-          elements[j].style.backgroundColor = lightBlue;
+          elements[i].style.backgroundColor = accentRed;
+          elements[j].style.backgroundColor = accentRed;
           const temp = elements[i].style.height;
           elements[i].style.height = elements[j].style.height;
           elements[j].style.height = temp;
@@ -68,8 +68,8 @@ const SortingDisplay = () => {
       } else {
         setTimeout(() => {
           const [i, j] = animation;
-          elements[i].style.backgroundColor = primaryColor;
-          elements[j].style.backgroundColor = primaryColor;
+          elements[i].style.backgroundColor = lightBlue;
+          elements[j].style.backgroundColor = lightBlue;
         }, index * sortingSpeed);
       }
     });
@@ -84,15 +84,15 @@ const SortingDisplay = () => {
       if (index % 2 === 0) {
         setTimeout(() => {
           const [i, j] = animation;
-          elements[i].style.backgroundColor = lightBlue;
-          elements[j].style.backgroundColor = lightBlue;
+          elements[i].style.backgroundColor = accentRed;
+          elements[j].style.backgroundColor = accentRed;
         }, index * sortingSpeed);
       } else {
         setTimeout(() => {
           const [i, value, j] = animation;
           elements[i].style.height = `${(value / 1000) * 100}%`;
-          elements[i].style.backgroundColor = primaryColor;
-          elements[j].style.backgroundColor = primaryColor;
+          elements[i].style.backgroundColor = lightBlue;
+          elements[j].style.backgroundColor = lightBlue;
         }, index * sortingSpeed);
       }
     });

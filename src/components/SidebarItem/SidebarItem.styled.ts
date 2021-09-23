@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import { lightPurple } from "../../globalStyles";
+import { darkBlue } from "../../globalStyles";
 
 interface SidebarItemWrapperProps {
   active: boolean;
 }
 
 export const SidebarItemWrapper = styled.div<SidebarItemWrapperProps>`
-  color: ${(props) => (props.active ? lightPurple : "white")};
-  border: 2px solid ${(props) => (props.active ? lightPurple : "white")};
+  background-color: ${(props) => (props.active ? darkBlue : "white")};
+  color: ${(props) => (props.active ? "white" : darkBlue)};
+  border: 2px solid white;
   margin-top: 20px;
   padding: 5px;
   font-size: 25px;

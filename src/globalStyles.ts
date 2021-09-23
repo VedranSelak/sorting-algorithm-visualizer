@@ -2,11 +2,12 @@ import { createGlobalStyle } from "styled-components";
 import ArvoWoff from "./fonts/Arvo.woff";
 import ArvoWoff2 from "./fonts/Arvo.woff";
 
-export const primaryColor = "#31004a";
-export const primaryColorRgb = "rgb(49, 0, 74)";
-export const secondaryPurple = "#33007b";
+export const primaryColor = "#4A148C";
+export const secondaryPurple = "#6200EE";
+export const darkBlue = "#1A237E";
 export const lightPurple = "#ab00ff";
-export const lightBlue = "#4287f5";
+export const lightBlue = "#1976D2";
+export const accentRed = "#D50000";
 export const accentGrey = "#95989e";
 
 export const GlobalStyle = createGlobalStyle`

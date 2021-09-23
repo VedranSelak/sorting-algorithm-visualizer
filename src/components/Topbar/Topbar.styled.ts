@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { primaryColor, secondaryPurple, accentGrey } from "../../globalStyles";
+import { primaryColor, accentGrey, darkBlue } from "../../globalStyles";
 
 export const TopbarContainer = styled.div`
   display: flex;
@@ -30,6 +30,7 @@ export const TopbarRight = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 32px;
+  width: 300px;
 `;
 
 export const RangeDescription = styled.div`
@@ -56,7 +57,7 @@ export const DescriptionItem = styled.div`
 export const SortButton = styled.button`
   width: 60px;
   height: 36px;
-  background-color: ${secondaryPurple};
+  background-color: ${darkBlue};
   color: white;
   border-radius: 5px;
   margin-left: 20px;
@@ -73,7 +74,7 @@ export const SortButton = styled.button`
 `;
 
 export const Accent = styled.span`
-  color: ${secondaryPurple};
+  color: ${darkBlue};
   font-weight: 600;
   font-size: 17px;
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { primaryColor } from "../../globalStyles";
+import { lightBlue, primaryColor } from "../../globalStyles";
 
 export const SortingDisplayWrapper = styled.div`
   width: 90%;
@@ -10,7 +10,7 @@ export const SortingDisplayWrapper = styled.div`
 `;
 
 export const SortingItem = styled.div`
-  background-color: ${primaryColor};
+  background-color: ${lightBlue};
   margin-right: 3px;
   width: 100%;
 `;
