@@ -51,12 +51,14 @@ const SortingDisplay = () => {
   }, [isButtonClicked, dispatch]);
 
   const executeBubbleSort = () => {
-    const animations = bubbleSort([...currentArray]);
+    const arrayToSort = [...currentArray];
+    const animations = bubbleSort(arrayToSort);
     const elements = document.getElementsByClassName(
       "array-item"
     ) as HTMLCollectionOf<HTMLElement>;
-    animations.forEach((animation, index) => {
-      if (index % 2 === 0) {
+    for (let k = 0; k < animations.length; k++) {
+      const animation = animations[k];
+      if (k % 2 === 0) {
         setTimeout(() => {
           const [i, j] = animation;
           elements[i].style.backgroundColor = accentRed;
@@ -64,38 +66,40 @@ const SortingDisplay = () => {
           const temp = elements[i].style.height;
           elements[i].style.height = elements[j].style.height;
           elements[j].style.height = temp;
-        }, index * sortingSpeed);
+        }, k * sortingSpeed);
       } else {
         setTimeout(() => {
           const [i, j] = animation;
           elements[i].style.backgroundColor = lightBlue;
           elements[j].style.backgroundColor = lightBlue;
-        }, index * sortingSpeed);
+        }, k * sortingSpeed);
       }
-    });
+    }
   };
 
   const executeMergeSort = () => {
-    const animations = mergeSort([...currentArray]);
+    const arrayToSort = [...currentArray];
+    const animations = mergeSort(arrayToSort);
     const elements = document.getElementsByClassName(
       "array-item"
     ) as HTMLCollectionOf<HTMLElement>;
-    animations.forEach((animation, index) => {
-      if (index % 2 === 0) {
+    for (let k = 0; k < animations.length; k++) {
+      const animation = animations[k];
+      if (k % 2 === 0) {
         setTimeout(() => {
           const [i, j] = animation;
           elements[i].style.backgroundColor = accentRed;
           elements[j].style.backgroundColor = accentRed;
-        }, index * sortingSpeed);
+        }, k * sortingSpeed);
       } else {
         setTimeout(() => {
           const [i, value, j] = animation;
           elements[i].style.height = `${(value / 1000) * 100}%`;
           elements[i].style.backgroundColor = lightBlue;
           elements[j].style.backgroundColor = lightBlue;
-        }, index * sortingSpeed);
+        }, k * sortingSpeed);
       }
-    });
+    }
   };
 
   const getRandomNumber = (min: number, max: number) => {
