@@ -18,9 +18,11 @@ import {
   BUBBLE,
   MERGE,
   QUICK,
+  SELECTION,
 } from "../../utils/constants/algorithmNames.constants";
 import { mergeSort } from "../../utils/helpers/mergeSort.helper";
 import { quickSort } from "../../utils/helpers/quickSort.helper";
+import { selectionSort } from "../../utils/helpers/selectionSort.helper";
 
 const SortingDisplay = () => {
   const arraySize = useSelector(selectCurrentArraySize);
@@ -49,6 +51,9 @@ const SortingDisplay = () => {
           break;
         case QUICK:
           executeSwapAlgorithms(quickSort);
+          break;
+        case SELECTION:
+          executeSwapAlgorithms(selectionSort);
           break;
         default:
           console.log("please select an algorithm");
