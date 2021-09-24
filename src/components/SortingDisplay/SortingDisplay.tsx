@@ -20,11 +20,13 @@ import {
   MERGE,
   QUICK,
   SELECTION,
+  SHELL,
 } from "../../utils/constants/algorithmNames.constants";
 import { mergeSort } from "../../utils/helpers/mergeSort.helper";
 import { quickSort } from "../../utils/helpers/quickSort.helper";
 import { selectionSort } from "../../utils/helpers/selectionSort.helper";
 import { insertionSort } from "../../utils/helpers/insertionSort.helper";
+import { shellSort } from "../../utils/helpers/shellSort.helper";
 
 const SortingDisplay = () => {
   const arraySize = useSelector(selectCurrentArraySize);
@@ -59,6 +61,9 @@ const SortingDisplay = () => {
           break;
         case INSERTION:
           executeSwapAlgorithms(insertionSort);
+          break;
+        case SHELL:
+          executeSwapAlgorithms(shellSort);
           break;
         default:
           console.log("please select an algorithm");
