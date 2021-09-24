@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { primaryColor, lightBlue, accentRed } from "../../globalStyles";
+import { lightBlue, accentRed } from "../../globalStyles";
 import {
   selectCurrentAlgorithm,
   selectCurrentArray,
@@ -14,8 +14,13 @@ import {
 } from "../../store/ui.slice";
 import { bubbleSort } from "../../utils/helpers/bubbleSort.helper";
 import { SortingDisplayWrapper, SortingItem } from "./SortingDisplay.styled";
-import { BUBBLE, MERGE } from "../../utils/constants/algorithmNames.constants";
+import {
+  BUBBLE,
+  MERGE,
+  QUICK,
+} from "../../utils/constants/algorithmNames.constants";
 import { mergeSort } from "../../utils/helpers/mergeSort.helper";
+import { quickSort } from "../../utils/helpers/quickSort.helper";
 
 const SortingDisplay = () => {
   const arraySize = useSelector(selectCurrentArraySize);
@@ -37,10 +42,13 @@ const SortingDisplay = () => {
     if (isButtonClicked) {
       switch (currentAlgorithm) {
         case BUBBLE:
-          executeBubbleSort();
+          executeSwapAlgorithms(bubbleSort);
           break;
         case MERGE:
           executeMergeSort();
+          break;
+        case QUICK:
+          executeSwapAlgorithms(quickSort);
           break;
         default:
           console.log("please select an algorithm");
@@ -51,9 +59,11 @@ const SortingDisplay = () => {
     }
   }, [isButtonClicked, dispatch]);
 
-  const executeBubbleSort = () => {
+  const executeSwapAlgorithms = (
+    callback: (arrayToSort: number[]) => number[][]
+  ) => {
     const arrayToSort = [...currentArray];
-    const animations = bubbleSort(arrayToSort);
+    const animations = callback(arrayToSort);
     const elements = document.getElementsByClassName(
       "array-item"
     ) as HTMLCollectionOf<HTMLElement>;
