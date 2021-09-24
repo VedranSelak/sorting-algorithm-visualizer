@@ -7,7 +7,10 @@ import {
   setArraySize,
   setSortingSpeed,
 } from "../../store/sorting.slice";
-import { setIsButtonClicked } from "../../store/ui.slice";
+import {
+  selectIsButtonClicked,
+  setIsButtonClicked,
+} from "../../store/ui.slice";
 import {
   TopbarContainer,
   RangeInput,
@@ -28,6 +31,7 @@ const Topbar = () => {
   const sortingSpeed = useSelector(selectSortingSpeed);
   const dispatch = useDispatch();
   const [tooltipShow, setTooltipShow] = useState(false);
+  const isButtonClicked = useSelector(selectIsButtonClicked);
 
   const handleClick = () => {
     dispatch(setIsButtonClicked({ isButtonClicked: true }));
@@ -79,7 +83,9 @@ const Topbar = () => {
             "Please select an algorithm"
           )}
         </AlgorithmName>
-        <SortButton onClick={handleClick}>Sort</SortButton>
+        <SortButton disabled={isButtonClicked} onClick={handleClick}>
+          Sort
+        </SortButton>
       </TopbarRight>
     </TopbarContainer>
   );

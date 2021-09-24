@@ -71,6 +71,11 @@ export const SortButton = styled.button`
     font-weight: 600;
     opacity: 0.9;
   }
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
 `;
 
 export const Accent = styled.span`

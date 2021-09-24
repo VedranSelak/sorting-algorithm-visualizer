@@ -46,8 +46,9 @@ const SortingDisplay = () => {
           console.log("please select an algorithm");
           break;
       }
+    } else {
+      dispatch(setIsButtonClicked({ isButtonClicked: false }));
     }
-    dispatch(setIsButtonClicked({ isButtonClicked: false }));
   }, [isButtonClicked, dispatch]);
 
   const executeBubbleSort = () => {
@@ -75,6 +76,10 @@ const SortingDisplay = () => {
         }, k * sortingSpeed);
       }
     }
+    setTimeout(() => {
+      dispatch(setIsButtonClicked({ isButtonClicked: false }));
+      dispatch(setCurrentArray({ currentArray: arrayToSort }));
+    }, animations.length * sortingSpeed);
   };
 
   const executeMergeSort = () => {
@@ -100,6 +105,10 @@ const SortingDisplay = () => {
         }, k * sortingSpeed);
       }
     }
+    setTimeout(() => {
+      dispatch(setIsButtonClicked({ isButtonClicked: false }));
+      dispatch(setCurrentArray({ currentArray: arrayToSort }));
+    }, animations.length * sortingSpeed);
   };
 
   const getRandomNumber = (min: number, max: number) => {
