@@ -16,6 +16,7 @@ import { bubbleSort } from "../../utils/helpers/bubbleSort.helper";
 import { SortingDisplayWrapper, SortingItem } from "./SortingDisplay.styled";
 import {
   BUBBLE,
+  INSERTION,
   MERGE,
   QUICK,
   SELECTION,
@@ -23,6 +24,7 @@ import {
 import { mergeSort } from "../../utils/helpers/mergeSort.helper";
 import { quickSort } from "../../utils/helpers/quickSort.helper";
 import { selectionSort } from "../../utils/helpers/selectionSort.helper";
+import { insertionSort } from "../../utils/helpers/insertionSort.helper";
 
 const SortingDisplay = () => {
   const arraySize = useSelector(selectCurrentArraySize);
@@ -54,6 +56,9 @@ const SortingDisplay = () => {
           break;
         case SELECTION:
           executeSwapAlgorithms(selectionSort);
+          break;
+        case INSERTION:
+          executeSwapAlgorithms(insertionSort);
           break;
         default:
           console.log("please select an algorithm");
