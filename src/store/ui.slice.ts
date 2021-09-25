@@ -24,8 +24,8 @@ export const uiSlice = createSlice({
     addError: (state, action: { payload: { errorMessage: string } }) => {
       state.errorList.push(action.payload.errorMessage);
     },
-    deleteError: (state) => {
-      state.errorList.pop();
+    deleteError: (state, action: { payload: { errorIndex: number } }) => {
+      state.errorList.splice(action.payload.errorIndex, 1);
     },
   },
 });

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { accentRed } from "../../globalStyles";
 
 export const AppContainer = styled.div`
@@ -27,6 +27,15 @@ export const ToastListContainer = styled.div`
   overflow: hidden;
 `;
 
+const FadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity:1;
+  }
+`;
+
 export const ErrorMessageContainer = styled.div`
   width: 100%;
   display: flex;
@@ -35,4 +44,5 @@ export const ErrorMessageContainer = styled.div`
   padding: 10px 20px;
   margin-top: 10px;
   border-radius: 10px;
+  animation: ${FadeIn} 300ms linear;
 `;

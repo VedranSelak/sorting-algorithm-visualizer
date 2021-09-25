@@ -11,11 +11,13 @@ import { deleteError } from "../../store/ui.slice";
 
 interface Props {
   message: string;
+  index: number;
 }
-const ErrorMessage = ({ message }: Props) => {
+
+const ErrorMessage = ({ message, index }: Props) => {
   const dispatch = useDispatch();
   const handleDeleteError = () => {
-    dispatch(deleteError());
+    dispatch(deleteError({ errorIndex: index }));
   };
 
   return (
