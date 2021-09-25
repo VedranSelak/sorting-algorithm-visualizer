@@ -9,6 +9,7 @@ import {
   setCurrentArray,
 } from "../../store/sorting.slice";
 import {
+  addError,
   selectIsButtonClicked,
   setIsButtonClicked,
 } from "../../store/ui.slice";
@@ -78,7 +79,8 @@ const SortingDisplay = () => {
           executeSwapAlgorithms(shellSort);
           break;
         default:
-          console.log("please select an algorithm");
+          dispatch(addError({ errorMessage: "Please select an algorithm" }));
+          dispatch(setIsButtonClicked({ isButtonClicked: false }));
           break;
       }
     } else {
