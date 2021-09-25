@@ -9,7 +9,7 @@ import {
   setCurrentArray,
 } from "../../store/sorting.slice";
 import {
-  addError,
+  addToast,
   selectIsButtonClicked,
   setIsButtonClicked,
 } from "../../store/ui.slice";
@@ -28,6 +28,7 @@ import { quickSort } from "../../utils/helpers/quickSort.helper";
 import { selectionSort } from "../../utils/helpers/selectionSort.helper";
 import { insertionSort } from "../../utils/helpers/insertionSort.helper";
 import { shellSort } from "../../utils/helpers/shellSort.helper";
+import { ERROR } from "../../utils/constants/toastTypes.constants";
 
 const SortingDisplay = () => {
   const arraySize = useSelector(selectCurrentArraySize);
@@ -79,7 +80,9 @@ const SortingDisplay = () => {
           executeSwapAlgorithms(shellSort);
           break;
         default:
-          dispatch(addError({ errorMessage: "Please select an algorithm" }));
+          dispatch(
+            addToast({ type: ERROR, message: "Please select an algorithm" })
+          );
           dispatch(setIsButtonClicked({ isButtonClicked: false }));
           break;
       }

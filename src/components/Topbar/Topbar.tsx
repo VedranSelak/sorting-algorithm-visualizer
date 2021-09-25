@@ -8,9 +8,11 @@ import {
   setSortingSpeed,
 } from "../../store/sorting.slice";
 import {
+  addToast,
   selectIsButtonClicked,
   setIsButtonClicked,
 } from "../../store/ui.slice";
+import { WARNING } from "../../utils/constants/toastTypes.constants";
 import {
   TopbarContainer,
   RangeInput,
@@ -70,6 +72,14 @@ const Topbar = () => {
           min={1}
           max={100}
           onChange={(e) => {
+            if (isButtonClicked) {
+              dispatch(
+                addToast({
+                  type: WARNING,
+                  message: "Cannot change sorting speed while sorting",
+                })
+              );
+            }
             const speed = 101 - parseInt(e.target.value);
             dispatch(setSortingSpeed({ sortingSpeed: speed }));
           }}

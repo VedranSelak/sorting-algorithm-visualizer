@@ -9,6 +9,7 @@ export const lightPurple = "#ab00ff";
 export const lightBlue = "#1976D2";
 export const accentRed = "#D50000";
 export const accentGrey = "#95989e";
+export const yellowWarning = "#FFCC00";
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {

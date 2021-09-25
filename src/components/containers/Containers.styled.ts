@@ -1,3 +1,4 @@
+import { yellowWarning } from "./../../globalStyles";
 import styled, { keyframes } from "styled-components";
 import { accentRed } from "../../globalStyles";
 
@@ -20,9 +21,9 @@ export const ToastListContainer = styled.div`
   right: 20px;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   justify-content: flex-end;
   padding: 20px;
-  width: 400px;
   height: 500px;
   overflow: hidden;
 `;
@@ -36,11 +37,16 @@ const FadeIn = keyframes`
   }
 `;
 
-export const ErrorMessageContainer = styled.div`
-  width: 100%;
+interface ToastMessageContainerProps {
+  isWarning: boolean;
+}
+
+export const ToastMessageContainer = styled.div<ToastMessageContainerProps>`
   display: flex;
   flex-direction: column;
-  background-color: ${accentRed};
+  width: fit-content;
+  align-items: flex-end;
+  background-color: ${(props) => (props.isWarning ? yellowWarning : accentRed)};
   padding: 10px 20px;
   margin-top: 10px;
   border-radius: 10px;

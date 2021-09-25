@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-export const ErrorMessageText = styled.h2`
+export const ToastMessageText = styled.h2`
   font-size: 20px;
+  margin-left: 20px;
 `;
 
-export const ErrorHeader = styled.div`
+export const ToastHeader = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 100%;
 `;
 
-export const DeleteError = styled.button`
+export const DeleteToast = styled.button`
   font-size: 10px;
   color: white;
   background-color: transparent;
@@ -24,7 +24,7 @@ export const DeleteError = styled.button`
   }
 `;
 
-export const ErrorContents = styled.div`
+export const ToastContents = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

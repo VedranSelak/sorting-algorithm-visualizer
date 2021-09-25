@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteError } from "../../store/ui.slice";
+import { deleteToast } from "../../store/ui.slice";
 import { ToastListContainer } from "../containers";
-import { ErrorMessage } from "../ErrorMessage";
+import { ToastMessage } from "../ToastMessage";
 
 interface Props {
-  list: string[];
+  list: { type: string; message: string }[];
 }
 const ToastList = ({ list }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(deleteError({ errorIndex: 0 }));
+      dispatch(deleteToast({ toastIndex: 0 }));
     }, 3000);
     return () => {
       clearInterval(interval);
@@ -22,7 +22,7 @@ const ToastList = ({ list }: Props) => {
   return (
     <ToastListContainer>
       {list.map((toast, index) => {
-        return <ErrorMessage key={index} index={index} message={toast} />;
+        return <ToastMessage key={index} index={index} {...toast} />;
       })}
     </ToastListContainer>
   );

@@ -3,12 +3,15 @@ import { RootState } from "..";
 
 export interface UiState {
   isButtonClicked: boolean;
-  errorList: string[];
+  toastList: {
+    type: string;
+    message: string;
+  }[];
 }
 
 const initialState: UiState = {
   isButtonClicked: false,
-  errorList: [],
+  toastList: [],
 };
 
 export const uiSlice = createSlice({
@@ -21,19 +24,22 @@ export const uiSlice = createSlice({
     ) => {
       state.isButtonClicked = action.payload.isButtonClicked;
     },
-    addError: (state, action: { payload: { errorMessage: string } }) => {
-      state.errorList.push(action.payload.errorMessage);
+    addToast: (
+      state,
+      action: { payload: { type: string; message: string } }
+    ) => {
+      state.toastList.push(action.payload);
     },
-    deleteError: (state, action: { payload: { errorIndex: number } }) => {
-      state.errorList.splice(action.payload.errorIndex, 1);
+    deleteToast: (state, action: { payload: { toastIndex: number } }) => {
+      state.toastList.splice(action.payload.toastIndex, 1);
     },
   },
 });
 
-export const { setIsButtonClicked, addError, deleteError } = uiSlice.actions;
+export const { setIsButtonClicked, addToast, deleteToast } = uiSlice.actions;
 
 export const selectIsButtonClicked = (state: RootState) =>
   state.ui.isButtonClicked;
-export const selectErrorList = (state: RootState) => state.ui.errorList;
+export const selectToastList = (state: RootState) => state.ui.toastList;
 
 export default uiSlice.reducer;
