@@ -6,6 +6,7 @@ export interface SortingState {
   selectedAlgorithm: string;
   currentArray: number[];
   sortingSpeed: number;
+  timeouts: ReturnType<typeof setTimeout>[];
 }
 
 const initialState: SortingState = {
@@ -13,6 +14,7 @@ const initialState: SortingState = {
   selectedAlgorithm: "",
   currentArray: [],
   sortingSpeed: 5,
+  timeouts: [],
 };
 
 export const sortingSlice = createSlice({
@@ -43,6 +45,12 @@ export const sortingSlice = createSlice({
     setSortingSpeed: (state, action: { payload: { sortingSpeed: number } }) => {
       state.sortingSpeed = action.payload.sortingSpeed;
     },
+    addTimeout: (
+      state,
+      action: { payload: { timeoutId: ReturnType<typeof setTimeout> } }
+    ) => {
+      state.timeouts.push(action.payload.timeoutId);
+    },
   },
 });
 
@@ -52,6 +60,7 @@ export const {
   setCurrentArray,
   swapElements,
   setSortingSpeed,
+  addTimeout,
 } = sortingSlice.actions;
 
 export const selectCurrentArraySize = (state: RootState) =>
@@ -62,5 +71,6 @@ export const selectCurrentArray = (state: RootState) =>
   state.sorting.currentArray;
 export const selectSortingSpeed = (state: RootState) =>
   state.sorting.sortingSpeed;
+export const selectTimeouts = (state: RootState) => state.sorting.timeouts;
 
 export default sortingSlice.reducer;

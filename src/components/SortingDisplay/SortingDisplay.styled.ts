@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { lightBlue, primaryColor } from "../../globalStyles";
+import { lightBlue } from "../../globalStyles";
 
 export const SortingDisplayWrapper = styled.div`
   width: 90%;

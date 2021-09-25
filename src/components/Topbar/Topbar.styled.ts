@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { primaryColor, accentGrey, darkBlue } from "../../globalStyles";
+import {
+  primaryColor,
+  accentGrey,
+  darkBlue,
+  accentRed,
+} from "../../globalStyles";
 
 export const TopbarContainer = styled.div`
   display: flex;
@@ -111,22 +116,27 @@ export const RangeInput = styled.input`
   }
 `;
 
-export const RangeTooltip = styled.div`
+interface RangeTooltipProps {
+  isSorting: boolean;
+}
+
+export const RangeTooltip = styled.div<RangeTooltipProps>`
   position: absolute;
-  width: 40px;
   height: 20px;
   transform: translateX(-50%);
   border-radius: 10px;
-  background-color: lightgrey;
-  padding: 5px;
+  background-color: ${(props) => (props.isSorting ? accentRed : "lightgrey")};
+  padding: 5px 10px;
   top: 5px;
   font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${primaryColor};
-
-  &:after {
+  color: ${(props) => (props.isSorting ? "white" : primaryColor)};
+  white-space: nowrap;
+  ${(props) =>
+    !props.isSorting &&
+    `&:after {
     position: absolute;
     content: "";
     width: 1px;
@@ -136,5 +146,5 @@ export const RangeTooltip = styled.div`
     border-color: lightgrey transparent transparent transparent;
     left: 35%;
     bottom: -10px;
-  }
+  }`}
 `;

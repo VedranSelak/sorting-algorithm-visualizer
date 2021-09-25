@@ -41,6 +41,18 @@ const SortingDisplay = () => {
     for (let i = 0; i < arraySize; i++) {
       array.push(getRandomNumber(5, 1000));
     }
+    // creating a dummy timeout to get the highest timeout id
+    const highestTimeoutId = setTimeout(() => {});
+    for (let i = 0; i < highestTimeoutId; i++) {
+      clearTimeout(i);
+    }
+    const elements = document.getElementsByClassName(
+      "array-item"
+    ) as HTMLCollectionOf<HTMLElement>;
+    // reseting the color of all elements
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].style.backgroundColor = lightBlue;
+    }
     dispatch(setCurrentArray({ currentArray: array }));
   }, [arraySize, dispatch]);
 

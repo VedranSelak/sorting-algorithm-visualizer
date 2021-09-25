@@ -41,8 +41,13 @@ const Topbar = () => {
     <TopbarContainer>
       <TopbarLeft>
         {tooltipShow && (
-          <RangeTooltip style={{ left: `${((rangeValue - 2) / 423) * 100}%` }}>
-            {rangeValue}
+          <RangeTooltip
+            isSorting={isButtonClicked}
+            style={{ left: `${((rangeValue - 2) / 423) * 100}%` }}
+          >
+            {isButtonClicked
+              ? "Changing the array size will stop the algorithm"
+              : rangeValue}
           </RangeTooltip>
         )}
         <RangeInput
@@ -52,9 +57,10 @@ const Topbar = () => {
           value={rangeValue}
           min={2}
           max={425}
-          onChange={(e) =>
-            dispatch(setArraySize({ arraySize: parseInt(e.target.value) }))
-          }
+          onChange={(e) => {
+            dispatch(setArraySize({ arraySize: parseInt(e.target.value) }));
+            dispatch(setIsButtonClicked({ isButtonClicked: false }));
+          }}
         />
       </TopbarLeft>
       <TopbarMiddle>
